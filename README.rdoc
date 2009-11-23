@@ -1,0 +1,22 @@
+# Testing URL's
+
+# Claim
+
+# Test Url: http://dev.dsiins.com/dsiapp/api.net/dsi_claim.aspx
+# Live Url: https://www.dsiins.com/api.net/dsi_claim.aspx
+
+# Recorded Shipment
+
+# Test Url: http://dev.dsiins.com/dsiapp/api.net/dsi_recordShipment.aspx
+# Live Url: https://www.dsiins.com/api.net/dsi_recordShipment.aspx
+
+# Validation API
+
+# Test Url: http://dev.dsiins.com/dsiapp/api.net/dsi_Validation.aspx
+# Live Url: https://www.dsiins.com/api.net/dsi_Validation.aspx
+
+# Voided Recorded Shipments
+
+# Test Url: http://dev.dsiins.com/dsiapp/api.net/dsi_voidRecordShipment.aspx
+# Live Url: https://www.dsiins.com/api.net/dsi_voidRecordShipment.aspx
+

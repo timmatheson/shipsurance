@@ -44,7 +44,7 @@
 # insuredCompany           Optional   String 150 Insured’s Company Name
 module Shipsurance
   class RecordShipment < Base
-    def add_tracking_number(number, post)
+    def add_tracking_number(number, post = {})
       post[:tracking_number] = number
       post
     end
@@ -86,17 +86,17 @@ module Shipsurance
       post
     end
     
-    def add_ext_commodity_category_id(category_id, post)
+    def add_ext_commodity_category_id(category_id, post = {})
       post[:ext_commodity_category_id] = category_id
       post
     end
     
-    def ext_package_type_id(ext_package_type_id, post)
+    def add_ext_package_type_id(ext_package_type_id, post = {})
       post[:ext_package_type_id] = ext_package_type_id
       post
     end
     
-    def package_count(package_count, post = {})
+    def add_package_count(package_count, post = {})
       post[:package_count] = package_count
       post
     end
@@ -104,6 +104,7 @@ module Shipsurance
     # optional 0 = No, 1 = Yes
     def add_contains_glass(contains_glass, post = {})
       post[:contains_glass] = contains_glass
+      post
     end
     
     def add_package_description(package_description, post = {})
@@ -114,8 +115,8 @@ module Shipsurance
     # Accepts a Shipsurance address object
     # Adds the departure address to the request
     def add_departure_address(address, post = {})
-      add_departure_address_1(address.address1, post)
-      add_departure_address_2(address.address2, post) if address.address2
+      add_departure_address_1(address.address_1, post)
+      add_departure_address_2(address.address_2, post) if address.address_2
       add_departure_city(address.city, post)
       add_departure_state(address.state, post)
       add_departure_postal_code(address.postal_code, post)
@@ -123,6 +124,7 @@ module Shipsurance
     end
     
     def add_departure_address_1(departure_address_1, post = {})
+      puts "Invoked #{add_departure_address_1}"
       post[:departure_address_1] = departure_address_1
       post
     end
@@ -170,8 +172,8 @@ module Shipsurance
     # Accepts a Shipsurance address object
     # Adds the destination address to the request
     def add_destination_address(address, post = {})
-      add_destination_address_1(address.address1, post)
-      add_destination_address_2(address.address2, post) if address.address2
+      add_destination_address_1(address.address_1, post)
+      add_destination_address_2(address.address_2, post) if address.address_2
       add_destination_city(address.city, post)
       add_destination_state(address.state, post)
       add_destination_postal_code(address.postal_code, post)

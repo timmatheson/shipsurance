@@ -8,4 +8,6 @@ require 'shipsurance/claim'
 require 'shipsurance/record_shipment'
 require 'shipsurance/void_record_shipment'
 require 'shipsurance/validation'
+require 'shipsurance/person'
+require 'shipsurance/address'
 

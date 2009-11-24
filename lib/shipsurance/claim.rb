@@ -1,7 +1,41 @@
+# FIELD                  REQUIRED VALUE MAX DESCRIPTION
+# extPersonSourceId      Required Varies by User The Source ID used to access the system
+# sourceUsername         Required Varies by User 50 The Username used to access the system
+# sourcePassword         Required Varies by User 50 The Password used to access the system
+# extPolicyId            Required String 10 DSI Policy Number
+# personSourceIdentifier Required String 100 External Person identifier
+# personCompany          Optional String 150 Person Company name
+# personFirstName        Required String 50 Person First Name
+# personLastName         Required String 50 Person Last Name
+# personPhone            Optional String 50 Person Phone
+# personFax              Optional String 50 Person Fax
+# personEmail            Required String 50 Person Email
+# recordedShipmentId     Required String 36 DSI Recorded Shipment ID
+# claimSourceIdentifier  Optional String 50 External Transaction Identifier
+# extCarrierId           Required See Lookup Codes Carrier ID’s - Appendix 1
+# carrierServiceName     Optional Strinf 150 Carrier Service Name
+# consigneeFullName      Required String 100 Full Name of Consignee
+# claimPaymentFullName   Required String 15 Name to make the Claim Check Payable To
+# claimPaymentAddress1   Required String 100 Claim Payment Address
+# claimPaymentAddress2   Optional String 100 Claim Payment Address
+# claimPaymentCity       Required String 50 Claim Payment Address
+# claimPaymentState      Optional String 2 Claim Payment Address
+# claimPaymentPostalCode Required String 100 Claim Payment Address
+# claimPaymentCountry    Required String 100 Claim Payment Address
+# claimPaymentPhone      Required String 100 Claim Payment Phone
+# claimPaymentFax        Optional String 50 Claim Payment Fax
+# claimPaymentEmail      Optional String 100 Claim Payment Email
+# fileDate               Required MM/DD/YYYY Date claim filed (Now)
+# lossDiscoveredDate     Required MM/DD/YYYY Date loss discovered
+# extClaimTypeId         Required 1 or 2 1 1 = Loss 2 = Damage
+# claimDescription       Required String 4000 Description of claim
+# claimAmount            Required Currency 8 Claim Amount (must be less than recorded shipment declared value)
+# certifyCorrect         Required 0 or 1 1 0 = No 1 = Yes (Must answer 1 to file)
 module Shipsurance
   class Claim < Base
-    def add_claim_source_identifier(post = {})
-      post[:claim_source_identifier] = ""
+    def add_claim_source_identifier(claim_source_identifier, post = {})
+      post[:claim_source_identifier] = claim_source_identifier
+      post
     end
     
     def required

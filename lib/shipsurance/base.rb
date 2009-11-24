@@ -1,22 +1,8 @@
-require 'net/http'
-require 'cgi'
-
-class Hash
-  def to_s
-    collect { |key, value| 
-      key = parametize(key)
-      "#{key}=#{CGI.escape(value.to_s)}" 
-    }.join("&")  
-  end
-  
-  def parametize(str)
-    params = str.to_s.split("_")
-    params[0] + params[1..-1].map(&:titleize).join
-  end
-end
-
+# Module for integrating with the Shipsurance API.
 module Shipsurance
   class Base
+    require 'net/http'
+    require 'cgi'
     require 'yaml'
     @@live_base_url = "https://www.dsiins.com/api.net"
     @@test_base_url = "http://dev.dsiins.com/dsiapp/api.net"
@@ -34,22 +20,18 @@ module Shipsurance
     end
     
     # Adds a person to the request parameters
+    # Accepts a Shipsurance::Person object
     def add_person(person, post = {})
-      post[:person_source_indentifier] = ""
-      post[:person_company]            = ""
-      post[:person_first_name]         = ""
-      post[:person_last_name]          = ""
-      post[:person_phone]              = ""
-      post[:person_fax]                = ""
-      post[:person_email]              = ""
+      post[:person_source_indentifier] = person.source_identifier
+      post[:person_company]            = person.company
+      post[:person_first_name]         = person.first_name
+      post[:person_last_name]          = person.last_name
+      post[:person_phone]              = person.phone
+      post[:person_fax]                = person.fax
+      post[:person_email]              = person.email
       post
     end
-    
-    # Adds the recorded shipment id to the parameters hash
-    def add_recorded_shipment_id(post = {})
-      post[:recorded_shipment_id] = ""
-    end
-    
+        
     # Commit the parameters to the API
     # This processes the request, and returns the response
     def commit(post)
@@ -71,9 +53,9 @@ module Shipsurance
     
     # Used for debugging, alias to puts
     def display(msg)
-      puts "=" * 25 
+      puts "=" * 15 + " REQUEST " + "=" * 15 
       puts msg
-      puts "=" * 25 
+      puts "=" * 15 + " EOF REQUEST " + "=" * 15
     end
     
     # Returns the correct url for the current resource
@@ -102,6 +84,10 @@ module Shipsurance
     end
     
     private
+   
+    def format_date(date, format = "%m/%d/%Y")
+      date.is_a?(Time) ? date.strftime(format) : date
+    end
     
     def validate_request(post)
       required.each do |key|

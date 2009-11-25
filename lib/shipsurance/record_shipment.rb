@@ -70,12 +70,6 @@ module Shipsurance
       post
     end
     
-    # Adds the recorded shipment id to the parameters hash
-    def add_recorded_shipment_id(recorded_shipment_id, post = {})
-      post[:recorded_shipment_id] = recorded_shipment_id
-      post
-    end
-    
     def add_shipment_date(date, post = {})
       post[:shipment_date] = format_date(date)
       post

@@ -2,7 +2,7 @@
 module Shipsurance
   class Person
     attr_reader :attributes
-    attr_accessor :source_indentifier, :company, :first_name, :last_name, :phone, :fax, :email
+    attr_accessor :source_identifier, :company, :first_name, :last_name, :phone, :fax, :email
     
     def initialize(attributes = {})
       @attributes = attributes

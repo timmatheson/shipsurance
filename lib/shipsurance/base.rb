@@ -2,7 +2,6 @@
 module Shipsurance
   class Base
     require 'net/http'
-    require 'cgi'
     require 'yaml'
     @@live_base_url = "https://www.dsiins.com/api.net"
     @@test_base_url = "http://dev.dsiins.com/dsiapp/api.net"
@@ -22,13 +21,19 @@ module Shipsurance
     # Adds a person to the request parameters
     # Accepts a Shipsurance::Person object
     def add_person(person, post = {})
-      post[:person_source_indentifier] = person.source_identifier
+      post[:person_source_identifier] = person.source_identifier
       post[:person_company]            = person.company
       post[:person_first_name]         = person.first_name
       post[:person_last_name]          = person.last_name
       post[:person_phone]              = person.phone
       post[:person_fax]                = person.fax
       post[:person_email]              = person.email
+      post
+    end
+    
+    # Adds the recorded shipment id to the parameters hash
+    def add_recorded_shipment_id(recorded_shipment_id, post = {})
+      post[:recorded_shipment_id] = recorded_shipment_id
       post
     end
         

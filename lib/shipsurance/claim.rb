@@ -38,12 +38,94 @@ module Shipsurance
       post
     end
     
+    def add_ext_carrier_id(id, post = {})
+      post[:ext_carrier_id] = id
+      post
+    end
+    
+    def add_consignee_full_name(full_name, post = {})
+      post[:consignee_full_name] = full_name
+      post
+    end
+    
+    def add_claim_payment_full_name(full_name, post = {})
+      post[:claim_payment_full_name] = full_name
+      post
+    end
+    
+    def add_claim_payment_address(address, post = {})
+      add_claim_payment_address_1(address.address_1, post)
+      add_claim_payment_city(address.city, post)
+      add_claim_payment_postal_code(address.postal_code, post)
+      add_claim_payment_country(address.country, post)
+      post
+    end
+    
+    def add_claim_payment_address_1(address_1, post = {})
+      post[:claim_payment_address_1] = address_1
+      post
+    end
+    
+    def add_claim_payment_city(city, post = {})
+      post[:claim_payment_city] = city
+      post
+    end
+    
+    def add_claim_payment_postal_code(postal_code, post = {})
+      post[:claim_payment_postal_code] = postal_code
+      post
+    end
+    
+    def add_claim_payment_country(country, post = {})
+      post[:claim_payment_country] = country
+      post
+    end
+    
+    def add_claim_payment_phone(phone, post = {})
+      post[:claim_payment_phone] = phone
+      post
+    end
+    
+    def add_file_date(date, post = {})
+      post[:file_date] = format_date(date)
+      post
+    end
+    
+    def add_loss_discovered_date(date, post = {})
+      post[:loss_discovered_date] = format_date(date)
+      post
+    end
+    
+    def add_ext_claim_type_id(id, post = {})
+      post[:ext_claim_type_id] = id
+      post
+    end
+    
+    def add_claim_description(description, post = {})
+      post[:claim_description] = description
+      post
+    end
+    
+    def add_claim_amount(amount, post = {})
+      post[:claim_amount] = amount
+      post
+    end
+    
+    def add_certify_correct(bool, post = {})
+      post[:certify_correct] = bool ? 1 : 0
+    end
+    
+    def add_claim_shipment_date(date, post = {})
+      post[:claim_shipment_date] = format_date(date)
+      post
+    end
+    
     def required
       super.push(:person_source_identifier, :person_first_name, :person_last_name, 
-       :person_email, :recorded_shipment_id, :ext_carrier, :consignee_full_name, 
+       :person_email, :recorded_shipment_id, :ext_carrier_id, :consignee_full_name, 
        :claim_payment_full_name, :claim_payment_address_1, :claim_payment_city,
        :claim_payment_postal_code, :claim_payment_country, :claim_payment_phone, :file_date, 
-       :loss_discovered_date, :ext_claim_type_id,:claim_description,:claim_amount, :certify_correct)
+       :loss_discovered_date, :ext_claim_type_id,:claim_description,:claim_amount, :certify_correct, :claim_shipment_date)
     end
   end
 end

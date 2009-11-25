@@ -1,11 +1,6 @@
-class Hash
-  #def to_s
-  #  collect { |key, value| 
-  #    key = parametize(key)
-  #    "#{key}=#{CGI.escape(value.to_s)}" 
-  #  }.join("&")  
-  #end
-  
+require 'cgi'
+
+class Hash  
   def to_s
     keys.each do |key|
       self[parametize(key.to_s)] = CGI.escape(self[key].to_s)

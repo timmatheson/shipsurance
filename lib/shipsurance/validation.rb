@@ -1,5 +1,5 @@
 module Shipsurance
-  class Validation
+  class Validation < Base
     def required
       super.push(:validation_type)
     end

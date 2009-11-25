@@ -13,6 +13,22 @@ describe Shipsurance::RecordShipment do
     )
   end
   
+  context " a request" do
+    it "should return a response given valid params" do
+      response = Shipsurance::RecordShipment.new.commit({
+        :ext_shipment_type_id => 1,
+        :ext_carrier_id => 1,
+        :carrier_service_name => "UPS",
+        :declared_value => 50.00,
+        :shipment_date => Time.now.strftime("%m/%d/%Y"),
+        :person_email => "aloke.nath@ordercup.com",
+        :package_description => "Test Description #{rand(9999999)}"
+      })
+      response.body.should == "The transaction was accepted."
+      response.transaction_key.should_not be_nil
+    end
+  end
+  
   it "should add the tracking number" do
     @record_shipment.add_tracking_number("1Z999999999999999").has_key?(:tracking_number).should == true
   end
@@ -79,5 +95,17 @@ describe Shipsurance::RecordShipment do
     @record_shipment.should_receive(:add_departure_postal_code).once.with(@address.postal_code,{})
     @record_shipment.should_receive(:add_departure_country).once.with(@address.country,{})
     @record_shipment.add_departure_address(@address)
+  end
+  
+  private
+  
+  def valid_request_params
+    {
+      :ext_shipment_type_id => 1,
+      :ext_carrier_id => 1,
+      :carrier_service_name => "UPS",
+      :declared_value => 50.00,
+      :shipment_date => "11/23/2009"
+    }
   end
 end

@@ -10,4 +10,4 @@ require 'shipsurance/void_record_shipment'
 require 'shipsurance/validation'
 require 'shipsurance/person'
 require 'shipsurance/address'
-
+require 'shipsurance/response'

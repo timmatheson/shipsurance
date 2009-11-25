@@ -37,17 +37,15 @@ module Shipsurance
     def commit(post)
       add_credentials(post)
       validate_request(post)
-      display post.to_s
       url = URI.parse(resource_url)
       req = Net::HTTP::Post.new(url.path)
-      req.set_form_data(post.to_s, ';')
+      req.set_form_data(post.to_s)
       res = Net::HTTP.new(url.host, url.port).start {|http| http.request(req) }
       case res
       when Net::HTTPSuccess#, Net::HTTPRedirection
-        # OK
-        puts res.body
+        Shipsurance::Response.new(res)
       else
-        res.error!
+        raise Shipsurance::RequestError, res.error!
       end
     end
     

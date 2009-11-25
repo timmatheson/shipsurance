@@ -216,7 +216,7 @@ module Shipsurance
     end
         
     def required
-      super.push(:ext_shipment_type_id, :ext_carrier_id, :carrier_service_name, :declared_value, :shipment_date)
+      super.push(:ext_shipment_type_id, :ext_carrier_id, :carrier_service_name, :declared_value, :shipment_date, :person_email, :package_description)
     end
   end
 end

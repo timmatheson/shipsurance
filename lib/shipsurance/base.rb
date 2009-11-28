@@ -93,6 +93,7 @@ module Shipsurance
     end
     
     def validate_request(post)
+      @@errors.clear
       required.each do |key|
         @@errors << "Missing required parameter #{key.to_s}" unless post.has_key?(key)
       end

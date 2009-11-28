@@ -10,3 +10,5 @@ def address_attributes
     :country     => "US"
   }
 end
+
+CREDENTIALS = YAML.load_file("config/credentials.yml")["test"].symbolize_keys

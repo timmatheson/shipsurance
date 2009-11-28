@@ -87,7 +87,7 @@ module Shipsurance
     end
     
     def add_file_date(date, post = {})
-      post[:file_date] = format_date(date)
+      post[:file_date] = date.strftime("%m/%d/%Y %H:%M %p")#format_date(date)
       post
     end
     

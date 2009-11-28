@@ -14,7 +14,7 @@ describe Shipsurance::RecordShipment do
     
     it "should return a transaction key given valid params" do
       response = @record_shipment.commit(valid_request_params)
-      response.transaction_key.should_not be_nil
+      response.recorded_shipment_id.should_not be_nil
     end
     
     it "should return a status code of 200 given valid params" do
@@ -107,7 +107,7 @@ describe Shipsurance::RecordShipment do
       :carrier_service_name => "UPS",
       :declared_value => 50.00,
       :shipment_date => Time.now.strftime("%m/%d/%Y"),
-      :person_email => "aloke.nath@ordercup.com",
+      :person_email => CREDENTIALS[:person_email],
       :package_description => "Test Description #{rand(9999999)}"
     }
   end

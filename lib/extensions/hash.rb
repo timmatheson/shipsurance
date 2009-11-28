@@ -10,8 +10,12 @@ class Hash
   end
   
   def parametize(str)
-    params = str.to_s.split("_")
-    params[0] + params[1..-1].map(&:titleize).join
+    if str.to_s == "ext_rs_void_reason_id"
+      "extRSVoidReasonId"
+    else
+      params = str.to_s.split("_")
+      params[0] + params[1..-1].map(&:titleize).join
+    end
   end
 end
 

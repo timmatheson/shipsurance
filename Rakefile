@@ -1,4 +1,4 @@
-new require 'rubygems'
+require 'rubygems'
 require 'rake'
 require 'echoe'
 

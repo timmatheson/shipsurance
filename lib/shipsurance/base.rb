@@ -86,6 +86,113 @@ module Shipsurance
       [:ext_person_source_id, :source_username, :source_password, :ext_policy_id]
     end
     
+    CARRIERS = {
+      "USPS"                                => 1,
+      "FedEx"                               => 2, 
+      "UPS"                                 => 3, 
+      "DHL"                                 => 4, 
+      "Canada Post"                         => 5, 
+      "BAX Global"                          => 6, 
+      "Purolator"                           => 7, 
+      "Greyhound GPX"                       => 8, 
+      "Australian Post"                     => 9, 
+      "Common Carrier"                      => 10,
+      "ICS Courier"                         => 11,
+      "Royal Mail"                          => 12,
+      "EMS"                                 => 13,
+      "TNT Express"                         => 14,
+      "French Postal System"                => 15,
+      "Lone Star Overnight"                 => 16,
+      "Spee-Dee Delivery"                   => 17,
+      "Golden State Overnight"              => 18,
+      "SAIA"                                => 19,
+      "Overnite Transportation"             => 20,
+      "CTI"                                 => 21,
+      "Roadway"                             => 22,
+      "Highway Freight"                     => 23,
+      "Yellow Freight"                      => 24,
+      "American Freight Companies"          => 25,
+      "Oak Harbor"                          => 26,
+      "Pitt Ohio"                           => 27,
+      "Koch Logistics"                      => 28,
+      "Old Dominion"                        => 29,
+      "Estes Express"                       => 30,
+      "R+L Carriers"                        => 31,
+      "Eastern Connection"                  => 32,     
+      "Overnite Express Overnite Express"   => 33,
+      "California Overnight"                => 34,
+      "ABF Freight System"                  => 35,
+      "UPS Supply Chain Solutions"          => 36,
+      "FedEx Freight"                       => 37,
+      "DHL Danzas"                          => 38,
+      "Watkins Motor Lines"                 => 39,
+      "Nebraska Transport Company"          => 40,
+      "UPS Mail Innovations"                => 41,
+      "AAA Cooper"                          => 42,
+      "Central Freight Lines"               => 43,
+      "Dayton Freight Lines"                => 44,
+      "Eagle Global Logistics"              => 45,
+      "New Penn"                            => 46,
+      "Pilot Air Freight"                   => 47,
+      "Roadrunner Dawes Freight"            => 48,
+      "SEKO Worldwide"                      => 49,
+      "Southeastern Freight Lines"          => 50,
+      "Target Logistic Services"            => 51,
+      "Vitran Express"                      => 52,
+      "United Van Lines"                    => 53,
+      "Bekins"                              => 54,
+      "HomeDirectUSA"                       => 55,
+      "IMEX Pitney Bowes IMEX"              => 56,
+      "UPS Freight"                         => 57,
+      "USF Holland"                         => 58,
+      "USF Reddaway"                        => 59,
+      "Averitt Express"                     => 60,
+      "STI Specialized Transportation Inc." => 61,
+      "Parcelforce U.K."                    => 62,
+      "Pharos U.K."                         => 63,
+      "YRC Replacing Yellow and Roadway"    => 64,
+      "DB Schenker"                         => 65
+    }
+    
+    COMMODITY_CATEGORY_IDS = {
+      "General Merchandise"                => 1,
+      "Machinery"                          => 2, 
+      "Household Goods & Personal Effects" => 3,  
+      "Fragile Goods/Glass"                => 4,  
+      "Computers/Electronics"              => 5,  
+      "Fine Arts"                          => 6,  
+      "Motorcycles/Automobiles"            => 7,  
+      "Precision Instruments"              => 8,  
+      "Musical Instruments"                => 9,  
+      "Chemicals/Hazardous Materials"      => 10, 
+      "Non Perishable Foods"               => 11, 
+      "Bottled Beverages"                  => 12, 
+      "Frozen/Chilled Foods (Not Meats)"   => 13, 
+      "Frozen/Chilled Meats"               => 14, 
+      "Steel Products"                     => 15, 
+      "Branded Goods"                      => 16, 
+      "Ceramic, Marble, Granite Tiles"     => 17, 
+      "Watercraft"                         => 18, 
+      "Bagged Commodities"                 => 19, 
+      "Ceramic, Marble, Granite Tiles"     => 20, 
+      "Lumber"                             => 21, 
+      "Boats/Yachts"                       => 22 
+    }
+    
+    COMMODITY_TYPE_IDS = {
+      "New Goods"           => 1,
+      "Used Goods"          => 2,
+      "Reconditioned Goods" => 3
+    }
+    
+    PACKAGE_TYPE_IDS = {
+     "Box"       => 1,
+     "Container" => 2,
+     "Crate"     => 3,
+     "Pallet"    => 4,
+     "Other"     => 5
+    }
+    
     private
    
     def format_date(date, format = "%m/%d/%Y")

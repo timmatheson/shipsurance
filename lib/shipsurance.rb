@@ -1,4 +1,4 @@
-RAILS_ENV = "development" #unless defined?(RAILS_ENV) #stub for dev
+RAILS_ENV = "development" unless defined?(RAILS_ENV) #stub for dev
 require 'rubygems'
 require 'active_support'
 require 'extensions/hash'

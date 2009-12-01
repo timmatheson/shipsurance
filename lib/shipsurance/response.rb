@@ -5,7 +5,7 @@ module Shipsurance
     def initialize(response)
       response_arry = parse(response)
       @code, @api_response_code, @body, @recorded_shipment_id = response.code.to_i, response_arry[0].to_i, response_arry[1], response_arry[2]
-      @success = (@response_code == 1)
+      @success = (@api_response_code == 1)
       self
     end 
     

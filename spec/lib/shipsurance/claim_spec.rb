@@ -8,26 +8,24 @@ describe Shipsurance::Claim do
   end
   
   context " a valid request" do
-    # TODO, there is some issue with this call
-    # It complains about fileDate not being set as DateTime but
-    # the API specifies it should be mm/dd/yyyy format.
-    # it "should return success" do
-    #   post = @claim.add_person(person)
-    #   @claim.add_recorded_shipment_id(@shipment_id,post)
-    #   @claim.add_ext_carrier_id(1,post)
-    #   @claim.add_consignee_full_name("Tim Matheson", post)
-    #   @claim.add_claim_payment_full_name("Tim Matheson", post)
-    #   @claim.add_claim_payment_address(@address, post)
-    #   @claim.add_claim_payment_phone("9495551212", post)
-    #   @claim.add_file_date(Time.now, post)
-    #   @claim.add_loss_discovered_date(Time.now, post)
-    #   @claim.add_claim_shipment_date(Time.now, post)
-    #   @claim.add_ext_claim_type_id(1, post)
-    #   @claim.add_claim_description("Test #{rand(9999)}", post)
-    #   @claim.add_claim_amount(5.00, post)
-    #   @claim.add_certify_correct(true, post)
-    #   @claim.commit(post).success.should == true
-    # end
+    it "should return success" do
+      post = @claim.add_person(person)
+      @claim.add_recorded_shipment_id(@shipment_id,post)
+      @claim.add_ext_carrier_id(1,post)
+      @claim.add_consignee_full_name("Tim Matheson", post)
+      @claim.add_claim_payment_full_name("Tim Matheson", post)
+      @claim.add_claim_payment_address(@address, post)
+      @claim.add_claim_payment_phone("9495551212", post)
+      @claim.add_file_date(Time.now, post)
+      @claim.add_loss_discovered_date(Time.now, post)
+      @claim.add_claim_shipment_date(Time.now, post)
+      @claim.add_ext_claim_type_id(1, post)
+      @claim.add_claim_description("Test #{rand(9999)}", post)
+      @claim.add_claim_amount(5.00, post)
+      @claim.add_certify_correct(true, post)
+      response = @claim.commit(post)
+      response.body.should == "The transaction was accepted."
+    end
   end
   
   context " attributes" do

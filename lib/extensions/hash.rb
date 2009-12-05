@@ -3,7 +3,7 @@ require 'cgi'
 class Hash  
   def to_s
     keys.each do |key|
-      self[parametize(key.to_s)] = CGI.escape(self[key].to_s)
+      self[parametize(key.to_s)] = self[key].to_s
       delete(key)
     end
     self

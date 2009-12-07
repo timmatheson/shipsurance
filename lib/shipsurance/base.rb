@@ -48,7 +48,7 @@ module Shipsurance
       res = Net::HTTP.new(url.host, url.port).start {|http| http.request(req) }
       case res
       when Net::HTTPSuccess#, Net::HTTPRedirection
-        Shipsurance::Response.new(res)
+        response(res)
       else
         raise Shipsurance::RequestError, res.error!
       end
@@ -75,6 +75,10 @@ module Shipsurance
     # Returns the class name of the current class as a string
     def resource_class
       @resource_class ||= self.class.to_s.split(":").last
+    end
+    
+    def response(response)
+      "#{self.class}Response".constantize.new(response)
     end
     
     def base_url
@@ -202,9 +206,12 @@ module Shipsurance
     def validate_request(post)
       @@errors.clear
       required.each do |key|
-        @@errors << "Missing required parameter #{key.to_s}" unless post.has_key?(key)
+        @@errors << "#{key.to_s}" unless post.has_key?(key)
       end
-      raise Shipsurance::RequestError, @@errors.join(", ") unless @@errors.empty?
+      unless @@errors.empty?
+        @@errors.unshift("Missing required #{@@errors.size > 1 ? "parameters" : "parameter"}")
+        raise Shipsurance::RequestError, @@errors.join(", ")
+      end
     end
     
     def credentials

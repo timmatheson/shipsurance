@@ -12,7 +12,7 @@ describe Shipsurance::Validation do
   
   it "should return an api_response_code of 1 given a valid validation type" do
      response = @validation.commit({ :validation_type => "activePolicy" })
-     response.api_response_code.should == 1
+     response.code.should == 200
    end
   
   it "should return an error given an invalid validation type" do
@@ -22,6 +22,6 @@ describe Shipsurance::Validation do
   
   it "should return an api_response_code of 2 given an invalid validation type" do
     response = @validation.commit({ :validation_type => "foo" })
-    response.api_response_code.should == 2
+    response.code.should == "2"
   end
 end

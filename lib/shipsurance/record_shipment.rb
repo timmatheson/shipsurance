@@ -118,7 +118,6 @@ module Shipsurance
     end
     
     def add_departure_address_1(departure_address_1, post = {})
-      puts "Invoked #{add_departure_address_1}"
       post[:departure_address_1] = departure_address_1
       post
     end

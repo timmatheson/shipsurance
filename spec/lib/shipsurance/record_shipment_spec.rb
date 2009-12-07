@@ -14,6 +14,7 @@ describe Shipsurance::RecordShipment do
     
     it "should return a transaction key given valid params" do
       response = @record_shipment.commit(valid_request_params)
+      response.body.should == "The transaction was accepted."
       response.recorded_shipment_id.should_not be_nil
     end
     
@@ -24,7 +25,7 @@ describe Shipsurance::RecordShipment do
     
     it "should return an api response code of 1 given valid params" do
       response = @record_shipment.commit(valid_request_params)
-      response.api_response_code.should == 1
+      response.code.should == 200
     end
   end
   

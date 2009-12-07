@@ -10,13 +10,11 @@ describe Shipsurance::ClaimStatus do
   
   it "should return success" do
     post = {}
-    post[:person_last_name] = "Matheson"
     post[:person_email] = CREDENTIALS[:person_email] 
     post[:ext_claim_id] = @claim_response.claim_code
     post[:claim_id] = @claim_response.claim_id
     response = @claim_status.commit(post)
-    puts post.inspect
-    response.reason_code.should == "foo"
+    response.reason_code.should == "The transaction was accepted."
   end
   
   private

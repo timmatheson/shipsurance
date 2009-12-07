@@ -44,7 +44,9 @@ module Shipsurance
       validate_request(post)
       url = URI.parse(resource_url)
       req = Net::HTTP::Post.new(url.path)
-      req.set_form_data(post.to_s)
+      params = post.to_s
+      #display "#{resource_url}?" + params.map{|k,v| "#{k}=#{v}"}.join("&")
+      req.set_form_data(params)
       res = Net::HTTP.new(url.host, url.port).start {|http| http.request(req) }
       case res
       when Net::HTTPSuccess#, Net::HTTPRedirection
